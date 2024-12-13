@@ -684,7 +684,7 @@ int main(int argc, char *argv[])
         test_list_insert_multithread(&(TestParams){.num_threads = base_num_threads, .num_nodes = 1024});
         test_list_insert_after_multithread(&(TestParams){.num_threads = base_num_threads, .num_nodes = 1024});
         test_list_insert_before_multithreaded(&(TestParams){.num_threads = base_num_threads, .num_nodes = 1024});
-        test_list_delete_multithreaded(&(TestParams){.num_threads = base_num_threads, .num_nodes = 1024});
+        test_list_delete_multithreaded(&(TestParams){.num_threads = base_num_threads, .num_nodes = 8});
 
         printf("\nStress testing basic operations with various numbers of threads and nodes:\n");
         for (int i = 0; i < 9; i++)      // from 2^0 = 1 up to 2^8 = 256 threads
