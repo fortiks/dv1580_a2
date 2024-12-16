@@ -1,0 +1,261 @@
+==27922== Memcheck, a memory error detector
+==27922== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==27922== Using Valgrind-3.18.1-42b08ed5bd-20211015 and LibVEX; rerun with -h for copyright info
+==27922== Command: ./test_linked_list 0
+==27922== Parent PID: 12834
+==27922== 
+--27922-- 
+--27922-- Valgrind options:
+--27922--    --leak-check=full
+--27922--    --show-leak-kinds=all
+--27922--    --track-origins=yes
+--27922--    --verbose
+--27922--    --log-file=valgrind-out.txt
+--27922-- Contents of /proc/version:
+--27922--   Linux version 5.15.167.4-microsoft-standard-WSL2 (root@f9c826d3017f) (gcc (GCC) 11.2.0, GNU ld (GNU Binutils) 2.37) #1 SMP Tue Nov 5 00:21:55 UTC 2024
+--27922-- 
+--27922-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
+--27922-- Page sizes: currently 4096, max supported 4096
+--27922-- Valgrind library directory: /usr/libexec/valgrind
+--27922-- Reading syms from /home/axeloseen/cfolder/lab1/dv1580_a2/test_linked_list
+--27922-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+--27922--   Considering /usr/lib/debug/.build-id/41/86944c50f8a32b47d74931e3f512b811813b64.debug ..
+--27922--   .. build-id is valid
+--27922-- Reading syms from /usr/libexec/valgrind/memcheck-amd64-linux
+--27922--    object doesn't have a symbol table
+--27922--    object doesn't have a dynamic symbol table
+--27922-- Scheduler: using generic scheduler lock implementation.
+--27922-- Reading suppressions file: /usr/libexec/valgrind/default.supp
+==27922== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-27922-by-axeloseen-on-???
+==27922== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-27922-by-axeloseen-on-???
+==27922== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-27922-by-axeloseen-on-???
+==27922== 
+==27922== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==27922== don't want to do, unless you know exactly what you're doing,
+==27922== or are doing some strange experiment):
+==27922==   /usr/bin/vgdb --pid=27922 ...command...
+==27922== 
+==27922== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==27922==   /path/to/gdb ./test_linked_list
+==27922== and then give GDB the following command
+==27922==   target remote | /usr/bin/vgdb --pid=27922
+==27922== --pid is optional if only one valgrind process is running
+==27922== 
+--27922-- REDIR: 0x402aa40 (ld-linux-x86-64.so.2:strlen) redirected to 0x580bcec2 (???)
+--27922-- REDIR: 0x402a810 (ld-linux-x86-64.so.2:index) redirected to 0x580bcedc (???)
+--27922-- Reading syms from /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
+--27922--    object doesn't have a symbol table
+--27922-- Reading syms from /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
+--27922--    object doesn't have a symbol table
+==27922== WARNING: new redirection conflicts with existing -- ignoring it
+--27922--     old: 0x0402aa40 (strlen              ) R-> (0000.0) 0x580bcec2 ???
+--27922--     new: 0x0402aa40 (strlen              ) R-> (2007.0) 0x0484ee30 strlen
+--27922-- REDIR: 0x4027220 (ld-linux-x86-64.so.2:strcmp) redirected to 0x484fcd0 (strcmp)
+--27922-- REDIR: 0x402afa0 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4853840 (mempcpy)
+--27922-- Reading syms from /home/axeloseen/cfolder/lab1/dv1580_a2/libmemory_manager.so
+--27922-- Reading syms from /usr/lib/x86_64-linux-gnu/libm.so.6
+--27922--   Considering /usr/lib/debug/.build-id/a5/08ec5d8bf12fb7fd08204e0f87518e5cd0b102.debug ..
+--27922--   .. build-id is valid
+--27922-- Reading syms from /usr/lib/x86_64-linux-gnu/libc.so.6
+--27922--   Considering /usr/lib/debug/.build-id/49/0fef8403240c91833978d494d39e537409b92e.debug ..
+--27922--   .. build-id is valid
+==27922== WARNING: new redirection conflicts with existing -- ignoring it
+--27922--     old: 0x049f7c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
+--27922--     new: 0x049f7c60 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
+==27922== WARNING: new redirection conflicts with existing -- ignoring it
+--27922--     old: 0x049f7c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
+--27922--     new: 0x049f7c60 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
+==27922== WARNING: new redirection conflicts with existing -- ignoring it
+--27922--     old: 0x049f7c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
+--27922--     new: 0x049f7c60 (memalign            ) R-> (1017.0) 0x0484e050 aligned_alloc
+==27922== WARNING: new redirection conflicts with existing -- ignoring it
+--27922--     old: 0x049f7c60 (memalign            ) R-> (1011.0) 0x0484e080 memalign
+--27922--     new: 0x049f7c60 (memalign            ) R-> (1017.0) 0x0484e020 aligned_alloc
+--27922-- REDIR: 0x49fa720 (libc.so.6:strnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x49fa9e0 (libc.so.6:strpbrk) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x49fa2e0 (libc.so.6:strcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x4a18cd0 (libc.so.6:wcsnlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x49fb6d0 (libc.so.6:memset) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x4a17540 (libc.so.6:wcslen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x49fbc10 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x4a17370 (libc.so.6:wcschr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x49fa260 (libc.so.6:index) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x49fa960 (libc.so.6:rindex) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x49fb5a0 (libc.so.6:memmove) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+==27922== Preferring higher priority redirection:
+--27922--     old: 0x04af27c0 (__memcpy_avx_unalign) R-> (2018.0) 0x04850f90 __memcpy_avx_unaligned_erms
+--27922--     new: 0x04af27c0 (__memcpy_avx_unalign) R-> (2018.1) 0x04852880 memmove
+--27922-- REDIR: 0x4a173f0 (libc.so.6:wcscmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x49fb9e0 (libc.so.6:stpncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x4a179b0 (libc.so.6:wmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x49fa830 (libc.so.6:strncmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x49fba70 (libc.so.6:strcasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x49fa420 (libc.so.6:strcspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x4a17470 (libc.so.6:wcscpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x49fa1d0 (libc.so.6:strcat) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x49fbb60 (libc.so.6:strncasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x49fb480 (libc.so.6:bcmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x4a03570 (libc.so.6:memrchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x49fd010 (libc.so.6:strchrnul) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x49fa390 (libc.so.6:strcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x49fbb10 (libc.so.6:strcasecmp_l) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x49fa6a0 (libc.so.6:strlen) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x49fa8d0 (libc.so.6:strncpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x49fb950 (libc.so.6:stpcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x49fb3f0 (libc.so.6:memchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x49fab00 (libc.so.6:strspn) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x49fb7d0 (libc.so.6:mempcpy) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x49fbac0 (libc.so.6:strncasecmp) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x49fcf80 (libc.so.6:rawmemchr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x49fb310 (libc.so.6:strstr) redirected to 0x483f220 (_vgnU_ifunc_wrapper)
+--27922-- REDIR: 0x4aef610 (libc.so.6:__strrchr_avx2) redirected to 0x484e810 (rindex)
+--27922-- REDIR: 0x4aef400 (libc.so.6:__strchrnul_avx2) redirected to 0x4853330 (strchrnul)
+--27922-- REDIR: 0x49f70a0 (libc.so.6:malloc) redirected to 0x4848820 (malloc)
+--27922-- REDIR: 0x4aef7e0 (libc.so.6:__strlen_avx2) redirected to 0x484ed10 (strlen)
+--27922-- REDIR: 0x4af2780 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x4853440 (mempcpy)
+--27922-- REDIR: 0x49f8520 (libc.so.6:calloc) redirected to 0x484d9d0 (calloc)
+--27922-- REDIR: 0x49f73e0 (libc.so.6:free) redirected to 0x484b210 (free)
+--27922-- REDIR: 0x4af2f80 (libc.so.6:__memset_avx2_unaligned_erms) redirected to 0x4852770 (memset)
+--27922-- memcheck GC: 1000 nodes, 994 survivors (99.4%)
+--27922-- memcheck GC: 1414 new table size (stepup)
+--27922-- memcheck GC: 1414 nodes, 132 survivors (9.3%)
+--27922-- memcheck GC: 1414 nodes, 902 survivors (63.8%)
+--27922-- memcheck GC: 1999 new table size (stepup)
+--27922-- memcheck GC: 1999 nodes, 975 survivors (48.8%)
+--27922-- memcheck GC: 2028 new table size (driftup)
+--27922-- memcheck GC: 2028 nodes, 2028 survivors (100.0%)
+--27922-- memcheck GC: 2868 new table size (stepup)
+--27922-- memcheck GC: 2868 nodes, 820 survivors (28.6%)
+--27922-- memcheck GC: 2911 new table size (driftup)
+--27922-- memcheck GC: 2911 nodes, 2911 survivors (100.0%)
+--27922-- memcheck GC: 4116 new table size (stepup)
+--27922-- memcheck GC: 4116 nodes, 20 survivors (0.5%)
+--27922-- memcheck GC: 4116 nodes, 4116 survivors (100.0%)
+--27922-- memcheck GC: 5820 new table size (stepup)
+--27922-- memcheck GC: 5820 nodes, 5820 survivors (100.0%)
+--27922-- memcheck GC: 8230 new table size (stepup)
+==27922== 
+==27922== Process terminating with default action of signal 2 (SIGINT)
+==27922==    at 0x485C55F: mem_free (memory_manager.c:113)
+==27922==    by 0x10A03F: list_cleanup (linked_list.c:449)
+==27922==    by 0x10A79C: test_list_insert_after_multithread (test_linked_list.c:158)
+==27922==    by 0x10C990: main (test_linked_list.c:694)
+==27922== 
+==27922== HEAP SUMMARY:
+==27922==     in use at exit: 3,904,672 bytes in 25,743 blocks
+==27922==   total heap usage: 101,490 allocs, 75,747 frees, 13,154,960 bytes allocated
+==27922== 
+==27922== Searching for pointers to 25,743 not-freed blocks
+==27922== Checked 34,999,624 bytes
+==27922== 
+==27922== 8 bytes in 1 blocks are still reachable in loss record 1 of 14
+==27922==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==27922==    by 0x10A603: test_list_insert_after_multithread (test_linked_list.c:131)
+==27922==    by 0x10C990: main (test_linked_list.c:694)
+==27922== 
+==27922== 32 bytes in 1 blocks are still reachable in loss record 2 of 14
+==27922==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==27922==    by 0x10A61B: test_list_insert_after_multithread (test_linked_list.c:132)
+==27922==    by 0x10C990: main (test_linked_list.c:694)
+==27922== 
+==27922== 72 bytes in 1 blocks are still reachable in loss record 3 of 14
+==27922==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==27922==    by 0x485C2C0: mem_init (memory_manager.c:24)
+==27922==    by 0x109608: list_init (linked_list.c:11)
+==27922==    by 0x10A5DE: test_list_insert_after_multithread (test_linked_list.c:128)
+==27922==    by 0x10C990: main (test_linked_list.c:694)
+==27922== 
+==27922== 72 bytes in 1 blocks are still reachable in loss record 4 of 14
+==27922==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==27922==    by 0x485C3C0: mem_alloc (memory_manager.c:55)
+==27922==    by 0x109645: list_insert (linked_list.c:21)
+==27922==    by 0x10A5EF: test_list_insert_after_multithread (test_linked_list.c:129)
+==27922==    by 0x10C990: main (test_linked_list.c:694)
+==27922== 
+==27922== 1,024 bytes in 1 blocks are still reachable in loss record 5 of 14
+==27922==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==27922==    by 0x49D0BA3: _IO_file_doallocate (filedoalloc.c:101)
+==27922==    by 0x49DFCDF: _IO_doallocbuf (genops.c:347)
+==27922==    by 0x49DEF5F: _IO_file_overflow@@GLIBC_2.2.5 (fileops.c:744)
+==27922==    by 0x49DD6D4: _IO_new_file_xsputn (fileops.c:1243)
+==27922==    by 0x49DD6D4: _IO_file_xsputn@@GLIBC_2.2.5 (fileops.c:1196)
+==27922==    by 0x49C714C: outstring_func (vfprintf-internal.c:239)
+==27922==    by 0x49C714C: __vfprintf_internal (vfprintf-internal.c:1263)
+==27922==    by 0x49B279E: printf (printf.c:33)
+==27922==    by 0x10C705: main (test_linked_list.c:657)
+==27922== 
+==27922== 1,088 bytes in 4 blocks are possibly lost in loss record 6 of 14
+==27922==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==27922==    by 0x40147D9: calloc (rtld-malloc.h:44)
+==27922==    by 0x40147D9: allocate_dtv (dl-tls.c:375)
+==27922==    by 0x40147D9: _dl_allocate_tls (dl-tls.c:634)
+==27922==    by 0x49E77B4: allocate_stack (allocatestack.c:430)
+==27922==    by 0x49E77B4: pthread_create@@GLIBC_2.34 (pthread_create.c:647)
+==27922==    by 0x10A417: test_list_insert_multithread (test_linked_list.c:91)
+==27922==    by 0x10C872: main (test_linked_list.c:684)
+==27922== 
+==27922== 73,512 bytes in 1,021 blocks are indirectly lost in loss record 7 of 14
+==27922==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==27922==    by 0x485C3C0: mem_alloc (memory_manager.c:55)
+==27922==    by 0x109645: list_insert (linked_list.c:21)
+==27922==    by 0x10ADDE: test_list_delete_multithreaded (test_linked_list.c:242)
+==27922==    by 0x10C8BD: main (test_linked_list.c:687)
+==27922== 
+==27922== 229,376 bytes in 1 blocks are indirectly lost in loss record 8 of 14
+==27922==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==27922==    by 0x485C28F: mem_init (memory_manager.c:17)
+==27922==    by 0x109608: list_init (linked_list.c:11)
+==27922==    by 0x10ADC1: test_list_delete_multithreaded (test_linked_list.c:237)
+==27922==    by 0x10C8BD: main (test_linked_list.c:687)
+==27922== 
+==27922== 302,960 (72 direct, 302,888 indirect) bytes in 1 blocks are definitely lost in loss record 9 of 14
+==27922==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==27922==    by 0x485C2C0: mem_init (memory_manager.c:24)
+==27922==    by 0x109608: list_init (linked_list.c:11)
+==27922==    by 0x10ADC1: test_list_delete_multithreaded (test_linked_list.c:237)
+==27922==    by 0x10C8BD: main (test_linked_list.c:687)
+==27922== 
+==27922== 617,472 bytes in 8,576 blocks are still reachable in loss record 10 of 14
+==27922==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==27922==    by 0x485C3C0: mem_alloc (memory_manager.c:55)
+==27922==    by 0x109785: list_insert_after (linked_list.c:66)
+==27922==    by 0x10A550: thread_insert_after_function (test_linked_list.c:118)
+==27922==    by 0x49E6AC2: start_thread (pthread_create.c:442)
+==27922==    by 0x4A77A03: clone (clone.S:100)
+==27922== 
+==27922== 903,168 bytes in 6 blocks are indirectly lost in loss record 11 of 14
+==27922==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==27922==    by 0x485C28F: mem_init (memory_manager.c:17)
+==27922==    by 0x109608: list_init (linked_list.c:11)
+==27922==    by 0x10ADC1: test_list_delete_multithreaded (test_linked_list.c:237)
+==27922==    by 0x10CA3C: main (test_linked_list.c:696)
+==27922== 
+==27922== 917,560 bytes in 1 blocks are still reachable in loss record 12 of 14
+==27922==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==27922==    by 0x485C28F: mem_init (memory_manager.c:17)
+==27922==    by 0x109608: list_init (linked_list.c:11)
+==27922==    by 0x10A5DE: test_list_insert_after_multithread (test_linked_list.c:128)
+==27922==    by 0x10C990: main (test_linked_list.c:694)
+==27922== 
+==27922== 1,160,784 bytes in 16,122 blocks are indirectly lost in loss record 13 of 14
+==27922==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==27922==    by 0x485C3C0: mem_alloc (memory_manager.c:55)
+==27922==    by 0x109645: list_insert (linked_list.c:21)
+==27922==    by 0x10ADDE: test_list_delete_multithreaded (test_linked_list.c:242)
+==27922==    by 0x10CA3C: main (test_linked_list.c:696)
+==27922== 
+==27922== 2,064,384 (432 direct, 2,063,952 indirect) bytes in 6 blocks are definitely lost in loss record 14 of 14
+==27922==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==27922==    by 0x485C2C0: mem_init (memory_manager.c:24)
+==27922==    by 0x109608: list_init (linked_list.c:11)
+==27922==    by 0x10ADC1: test_list_delete_multithreaded (test_linked_list.c:237)
+==27922==    by 0x10CA3C: main (test_linked_list.c:696)
+==27922== 
+==27922== LEAK SUMMARY:
+==27922==    definitely lost: 504 bytes in 7 blocks
+==27922==    indirectly lost: 2,366,840 bytes in 17,150 blocks
+==27922==      possibly lost: 1,088 bytes in 4 blocks
+==27922==    still reachable: 1,536,240 bytes in 8,582 blocks
+==27922==         suppressed: 0 bytes in 0 blocks
+==27922== 
+==27922== ERROR SUMMARY: 3 errors from 3 contexts (suppressed: 0 from 0)

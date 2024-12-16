@@ -8,7 +8,6 @@ static memory_block *metadata_head = NULL; // Head of the metadata linked list
 
 void mem_init(size_t size)
 {
-
     if (size == 0)
     {
         printf("Can't Initialization zero memory\n");

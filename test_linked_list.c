@@ -263,7 +263,7 @@ void test_list_delete_multithreaded(TestParams *params)
 
     // Verify the remaining list is empty if all nodes were to be deleted
     my_assert(list_count_nodes(&head) == 0); // Assuming all nodes are supposed to be deleted
-
+    
     printf_green("[PASS].\n");
 
     list_cleanup(&head);
@@ -684,10 +684,10 @@ int main(int argc, char *argv[])
         test_list_insert_multithread(&(TestParams){.num_threads = base_num_threads, .num_nodes = 1024});
         test_list_insert_after_multithread(&(TestParams){.num_threads = base_num_threads, .num_nodes = 1024});
         test_list_insert_before_multithreaded(&(TestParams){.num_threads = base_num_threads, .num_nodes = 1024});
-        test_list_delete_multithreaded(&(TestParams){.num_threads = base_num_threads, .num_nodes = 8});
+        test_list_delete_multithreaded(&(TestParams){.num_threads = base_num_threads, .num_nodes = 1024});
 
         printf("\nStress testing basic operations with various numbers of threads and nodes:\n");
-        for (int i = 0; i < 9; i++)      // from 2^0 = 1 up to 2^8 = 256 threads
+        for (int i = 0; i < 9; i++)      //9 from 2^0 = 1 up to 2^8 = 256 threads
             for (int j = 8; j < 15; j++) // from 2^8 = 256 up to 2^14 = 16384 nodes
             {
                 test_list_insert_multithread(&(TestParams){.num_threads = pow(2, i), .num_nodes = pow(2, j)});
@@ -707,7 +707,7 @@ int main(int argc, char *argv[])
         test_list_insert_before_multithreaded(&(TestParams){.num_threads = base_num_threads, .num_nodes = 1024});
         break;
     case 4:
-        test_list_delete_multithreaded(&(TestParams){.num_threads = base_num_threads, .num_nodes = 1024});
+        test_list_delete_multithreaded(&(TestParams){.num_threads = base_num_threads, .num_nodes = 4});
         break;
     case 5:
         for (int i = 0; i < 9; i++)      // from 2^0 = 1 up to 2^8 = 256 threads

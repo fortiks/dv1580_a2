@@ -1,7 +1,9 @@
 #include "linked_list.h"
 #include "memory_manager.h"
 
-
+pthread_mutex_t head_lock = PTHREAD_MUTEX_INITIALIZER;
+Node* recycled_list = NULL;
+pthread_mutex_t recycled_list_lock = PTHREAD_MUTEX_INITIALIZER;
 
 void list_init(Node **head, size_t size){
     // Set up memory pool 
@@ -152,32 +154,47 @@ void list_delete(Node **head, uint16_t data)
     }
 
     // Set up for eazy deletion
-    
-    Node* current = *head;
+    pthread_mutex_lock(&head_lock);
+    Node *current = *head;
+    pthread_mutex_lock(&current->lock); // make sure current-> data is not modified
     Node* prev = NULL;
 
-    pthread_mutex_lock(&current->lock); // make sure current-> data is not modified
+    
 
     // check if head holds the data to be deleted
     if (current->data == data)
     {
+        *head = current->next;
         if (*head != NULL)
         {
             // Lock the new head before unlocking the current head
             pthread_mutex_lock(&(*head)->lock);
         }
 
-        pthread_mutex_unlock(&current->lock);
-        pthread_mutex_destroy(&current->lock);
+        //pthread_mutex_unlock(&current->lock);
+        //pthread_mutex_destroy(&current->lock);
         
         mem_free(current);
+        /*
+        pthread_mutex_lock(&recycled_list_lock);
+        if (current != NULL)
+        {
+            current->data = 0;
+            current->next = recycled_list;
+            recycled_list = current;
+        }
+        pthread_mutex_unlock(&recycled_list_lock);
+        */
+
         if (*head != NULL)
         {
             pthread_mutex_unlock(&(*head)->lock); // Unlock the new head
         }
+        pthread_mutex_unlock(&head_lock);
 
         return;
     }
+    pthread_mutex_unlock(&head_lock);
 
     // Traverse the list to find the node to delete
     while (current != NULL)
@@ -193,13 +210,23 @@ void list_delete(Node **head, uint16_t data)
         {
             if (prev != NULL)
             {
-                prev->next = next_node; // Remove the node from the list
+                prev->next = next_node; // Remove the (current) node from the list
                 pthread_mutex_unlock(&prev->lock);
             }
 
             pthread_mutex_unlock(&current->lock); // Unlock the node to be deleted
-            pthread_mutex_destroy(&current->lock);
+            //pthread_mutex_destroy(&current->lock);
             mem_free(current);                    // Free the memory of the deleted node
+            /*
+            pthread_mutex_lock(&recycled_list_lock);
+            if (current != NULL)
+            {
+                current->data = 0;
+                current->next = recycled_list;
+                recycled_list = current;
+            }
+            pthread_mutex_unlock(&recycled_list_lock);
+            */
 
             if (next_node != NULL)
             {
@@ -391,12 +418,18 @@ void list_cleanup(Node **head){
     // Check if the list is empty
     if (*head == NULL)
     {
+        if (recycled_list != NULL)
+        {
+            *head = recycled_list;
+        }
+        
+        
         printf("Error: The list is empty\n");
         return;
+        
+        
     }
-
-    
-    
+ 
     pthread_mutex_lock(&(*head)->lock);
     
 
@@ -411,11 +444,17 @@ void list_cleanup(Node **head){
         {
             pthread_mutex_lock(&next_node->lock);
         }
+        pthread_mutex_unlock(&current->lock);
+        pthread_mutex_destroy(&current->lock);
         mem_free(current);         
         current = next_node;       
     }
+    mem_deinit();
 
     *head = NULL;
 }
 
 // LD_LIBRARY_PATH=. ./test_memory_manager
+/* LD_LIBRARY_PATH=. valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-out.txt ./test_linked_list 0
+ LD_PRELOAD=/home/axeloseen/cfolder/lab1/dv1580_a2/libmemory_manager.so
+    */
